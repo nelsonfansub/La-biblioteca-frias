@@ -151,7 +151,7 @@ public class BuscarMaterialPrincipal extends JDialog {
 					
 					if(	txtBuscarCodigo.getText().isEmpty()){
 						
-						JOptionPane.showMessageDialog(rootPane, "No se ah indicado un Codigo para buscar");
+						JOptionPane.showMessageDialog(rootPane, "No se ha indicado un codigo para buscar");
 						txtBuscarCodigo.requestFocus();
 					}
 					else {
@@ -164,6 +164,7 @@ public class BuscarMaterialPrincipal extends JDialog {
 						if(ventanaPadre instanceof VentanaPrestamosDeMateriales && ventanaAlterna == 3)
 						{
 							ResultSet rs = conexion.SeleccionarInventarioPorIDLibro(id);
+		
 							dfmBuscar.setColumnIdentifiers(new Object[]{"ID Material", "Descripcion", "Tipo Material"});
 							try {
 								
@@ -215,7 +216,7 @@ public class BuscarMaterialPrincipal extends JDialog {
 					// para buscar por nombre al darle clic al boton
 				if(	txtBuscarNombre.getText().isEmpty()){
 					
-					JOptionPane.showMessageDialog(rootPane, "No se ah indicado un Nombre para buscar");
+					JOptionPane.showMessageDialog(rootPane, "No se ha indicado un nombre para buscar");
 					txtBuscarNombre.requestFocus();
 				}
 				else {

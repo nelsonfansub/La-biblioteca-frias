@@ -112,9 +112,12 @@ public class BuscarUsuario extends JDialog {
 			
 			//--------------------- para Buscar por id y nombre -------------------------//
 			
+			
+			
 			JButton btnBuscarPorID = new JButton("");
 			btnBuscarPorID.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent arg0) {
+					
 				if(	txtBuscarCodigo.getText().isEmpty()){
 						
 						JOptionPane.showMessageDialog(rootPane, "No se ha indicado un Codigo para buscar");
@@ -122,17 +125,19 @@ public class BuscarUsuario extends JDialog {
 					}
 					else {
 						
-					
+						DefaultTableModel dfmBuscar = new DefaultTableModel();
+						table1.setModel(dfmBuscar);
+						
 						int id = Integer.parseInt(txtBuscarCodigo.getText());
 						Conexion cn = new Conexion();
 						ResultSet rs = cn.SeleccionarPorID(id);
-						table1.setModel(Tablamodelo);
-						Tablamodelo.setColumnIdentifiers(new Object[] {"ID Usuario", "Nombre", "Apellido","Sexo", "Tipo Usuario"});
+						//table1.setModel(Tablamodelo);
+						dfmBuscar.setColumnIdentifiers(new Object[] {"ID Usuario", "Nombre", "Apellido","Sexo", "Tipo Usuario"});
 						
 						try {
-							
+						
 								while(rs.next()){
-								Tablamodelo.addRow(new Object[]{rs.getInt("idpersona"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("sexo"), rs.getString("tipoUsuario")});
+								dfmBuscar.addRow(new Object[]{rs.getInt("idpersona"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("sexo"), rs.getString("tipoUsuario")});
 							}
 							
 						} catch(Exception e){
@@ -158,18 +163,21 @@ public class BuscarUsuario extends JDialog {
 					}
 					else {
 						
+						DefaultTableModel dfmBuscar = new DefaultTableModel();
+						table1.setModel(dfmBuscar);
+						
 						String nombre = "%"+ txtBuscarNombre.getText().toString()+"%";
 						System.out.println(nombre);
 						Conexion cn = new Conexion();
 						
 						ResultSet rs = cn.SeleccionarPorNombre(nombre);
-						table1.setModel(Tablamodelo);
-						Tablamodelo.setColumnIdentifiers(new Object[] {"ID Usuario", "Nombre", "Apellido","Sexo", "Tipo Usuario"});
+						//table1.setModel(Tablamodelo);
+						dfmBuscar.setColumnIdentifiers(new Object[] {"ID Usuario", "Nombre", "Apellido","Sexo", "Tipo Usuario"});
 						
 						try {
 							
 								while(rs.next()){
-								Tablamodelo.addRow(new Object[]{rs.getInt("idpersona"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("sexo"), rs.getString("tipoUsuario")});
+								dfmBuscar.addRow(new Object[]{rs.getInt("idpersona"), rs.getString("nombre"), rs.getString("apellido"), rs.getString("sexo"), rs.getString("tipoUsuario")});
 							}
 							
 						} catch(Exception e){
